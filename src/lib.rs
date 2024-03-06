@@ -14,21 +14,32 @@ use std::{
 };
 use textwrap::{fill, Options};
 
-const SUB_WIDTH: usize = 45;
+// Maximum dosplay column width.
 const MAX_WIDTH: usize = 80;
 
+// Subsequent column width (after header).
+const SUB_WIDTH: usize = 45;
+
+// Total number of signals.
 const NR_SIGS: u8 = 64;
+
+// Realtime signals (min and max).
 const SIGRTMIN_STR: &str = "RTMIN";
 const SIGRTMAX_STR: &str = "RTMAX";
+
+// Index of RT{MIN,MAX} signals (relative to the table).
 const SIGRTMIN_IDX: u8 = 0x22;
 const SIGRTMAX_IDX: u8 = 0x40;
 
+// A table of string representation of signals.
 static SIG_TAB: &[&str; 32] = &[
     "HUP", "INT", "QUIT", "ILL", "TRAP", "ABRT", "BUS", "FPE", "KILL", "USR1",
     "SEGV", "USR2", "PIPE", "ALRM", "TERM", "STKFLT", "CHLD", "CONT", "STOP",
     "TSTP", "TTIN", "TTOU", "URG", "XCPU", "XFSZ", "VTALRM", "PROF", "WINCH",
     "POLL", "IO", "PWR", "SYS",
 ];
+
+// Range values for signals.
 static POSIX_RANGE: std::ops::Range<u8> = 0x01..0x20;
 static RTMIN_RANGE: std::ops::Range<u8> = 0x20..0x32;
 static RTMAX_RANGE: std::ops::Range<u8> = 0x32..0x41;
