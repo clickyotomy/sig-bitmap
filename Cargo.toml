@@ -2,7 +2,7 @@
 name = "sig-bitmap"
 version = "0.0.1"
 edition = "2021"
-authors = ["Srinidhi Kaushik"]
+authors = ["Srinidhi Kaushik <clickyotomy@users.noreply.github.com>"]
 license = "MIT"
 description = "Interpret Signal Bitmaps for a Process"
 readme = "README"
