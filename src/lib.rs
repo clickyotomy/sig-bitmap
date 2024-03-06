@@ -48,10 +48,10 @@ pub enum BitmapType {
     SigBlk,
 
     /// Ignored signals.
-    SigIgn, 
+    SigIgn,
 
     /// Caught signals.
-    SigCgt, 
+    SigCgt,
 }
 
 /// Interpret signal bitmaps for a process.
@@ -154,7 +154,7 @@ fn fmt_bitmap(map: &u64) -> (String, u8) {
 /// type of signal bitmap for a given process. This function outputs
 /// an empty map if the process doesn't exist or if there is an error
 /// interpreting the signal bitmap.
-/// 
+///
 /// # Arguments
 ///
 /// * `args` - A reference to an `enum` containing the process
@@ -172,7 +172,7 @@ pub fn interpret(args: &SigBitmapArgs) {
 
     let (mut lst, cnt): (String, u8) = fmt_bitmap(&bmap);
 
-    if lst.len() == 0 {
+    if lst.is_empty() {
         lst = String::from("NONE");
     }
 
