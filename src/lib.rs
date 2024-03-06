@@ -1,6 +1,6 @@
 //! # Signal Bitmap Interpreter
 //
-//! This module provides functionality to interpret signal bitmaps read
+//! A simple library to interpret signal bitmaps for a process, read
 //! from `/proc/<pid>/status`. Supported signal bitmaps include pending
 //! signals (`SigPnd`), shared pending signals (`ShdPnd`), blocked signals
 //! (`SigBlk`), ignored signals (`SigIgn`), and caught signals (`SigCgt`).
