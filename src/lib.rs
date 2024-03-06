@@ -172,7 +172,7 @@ pub fn interpret(args: &SigBitmapArgs) {
 
     let (mut lst, cnt): (String, u8) = fmt_bitmap(&bmap);
 
-    if lst.len() <= 0 {
+    if lst.len() == 0 {
         lst = String::from("NONE");
     }
 
