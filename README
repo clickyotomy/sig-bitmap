@@ -1,0 +1,30 @@
+sig-bitmap
+----------
+
+A command line tool to interpret signal bitmaps for a process.
+
+Usage
+
+    sig-bitmap [OPTIONS] --pid <PID>
+
+    Options:
+    -p, --pid <PID>
+            PID of the process
+
+    -m, --map <MAP>
+            Type of bitmap to interpret
+
+            [default: sig-pnd]
+
+            Possible values:
+            - sig-pnd: Pending signals (thread)
+            - shd-pnd: Pending signals (shared between threads in a process)
+            - sig-blk: Blocked signals
+            - sig-ign: Ignored signals
+            - sig-cgt: Caught signals
+
+    -h, --help
+            Print help (see a summary with '-h')
+
+    -V, --version
+            Print version

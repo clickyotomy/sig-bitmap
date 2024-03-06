@@ -1,7 +1,8 @@
 use clap::Parser;
-use sig_bitmap::{sig_bitmap, SigBitmapArgs};
+use sig_bitmap::{interpret, SigBitmapArgs};
 
+/// Parse command line arguments, display the bitmap.
 fn main() {
-    let args = SigBitmapArgs::parse();
-    sig_bitmap(&args);
+    let args: SigBitmapArgs = SigBitmapArgs::parse();
+    interpret(&args);
 }
