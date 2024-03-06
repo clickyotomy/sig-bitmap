@@ -1,10 +1,9 @@
 //! # Signal Bitmap Interpreter
 //
-//! This module provides functionality to interpret signal
-//! bitmaps read from `/proc/<pid>/status`. Supported signal
-//! bitmaps include pending signals (`SigPnd`), shared pending
-//! signals (`ShdPnd`), blocked signals (`SigBlk`), ignored
-//! signals (`SigIgn`), and caught signals (`SigCgt`).
+//! This module provides functionality to interpret signal bitmaps read
+//! from `/proc/<pid>/status`. Supported signal bitmaps include pending
+//! signals (`SigPnd`), shared pending signals (`ShdPnd`), blocked signals
+//! (`SigBlk`), ignored signals (`SigIgn`), and caught signals (`SigCgt`).
 #![warn(unused_extern_crates)]
 use clap::{Parser, ValueEnum};
 use std::{
@@ -163,8 +162,9 @@ fn fmt_bitmap(map: &u64) -> (String, u8) {
 /// # Example
 /// ```
 /// // Print the list of signals ignored by a process with PID: 42.
-/// let args: SigBitmapArgs = SigBitmapArgs{pid: 42, typ: BitmapType::SigIgn};
-/// sig_bitmap(&args);
+/// use sig_bitmap::{interpret, BitmapType, SigBitmapArgs};
+/// let args: SigBitmapArgs = SigBitmapArgs{pid: 42, map: BitmapType::SigIgn};
+/// interpret(&args);
 /// ````
 pub fn interpret(args: &SigBitmapArgs) {
     let bmap: u64 = proc_bitmap(&args.pid, &args.map);
