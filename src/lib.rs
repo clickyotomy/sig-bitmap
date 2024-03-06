@@ -150,9 +150,9 @@ fn fmt_bitmap(map: &u64) -> (String, u8) {
     (sig_vec.join(", "), sig_cnt)
 }
 
-/// Displays the formatted string representaion of the specified type
-/// of signal bitmap for a given process. This function doesn't output
-/// anything if the process doesn't exist or if there is an error
+/// Displays the formatted string representaion of the specified
+/// type of signal bitmap for a given process. This function outputs
+/// an empty map if the process doesn't exist or if there is an error
 /// interpreting the signal bitmap.
 /// 
 /// # Arguments
@@ -170,21 +170,24 @@ pub fn interpret(args: &SigBitmapArgs) {
     let bmap: u64 = proc_bitmap(&args.pid, &args.map);
     let sfmt: &str = &" ".repeat(SUB_WIDTH);
 
-    if bmap > 0 {
-        let (lst, cnt): (String, u8) = fmt_bitmap(&bmap);
-        let out: String = fill(
-            &format!(
-                "PID: {:<6} {} {:<2} [0x{:016x}]: {}",
-                args.pid, args.map, cnt, bmap, lst,
-            ),
-            Options::new(MAX_WIDTH)
-                .subsequent_indent(sfmt)
-                .word_splitter(textwrap::WordSplitter::NoHyphenation)
-                .break_words(false),
-        );
+    let (mut lst, cnt): (String, u8) = fmt_bitmap(&bmap);
 
-        println!("{out}");
+    if lst.len() <= 0 {
+        lst = String::from("NONE");
     }
+
+    let out: String = fill(
+        &format!(
+            "PID: {:<6} {} {:<2} [0x{:016x}]: {}",
+            args.pid, args.map, cnt, bmap, lst,
+        ),
+        Options::new(MAX_WIDTH)
+            .subsequent_indent(sfmt)
+            .word_splitter(textwrap::WordSplitter::NoHyphenation)
+            .break_words(false),
+    );
+
+    println!("{out}");
 }
 
 #[cfg(test)]
